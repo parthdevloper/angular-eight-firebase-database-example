@@ -1,0 +1,36 @@
+
+<div class="container mt-3">
+  <h2 class="text-center p-3 border bg-success">welcome to firebase Database</h2>
+<div class="row">
+  <div class="col-6 border">
+    <h3 class="my-2 text-center">Fill Up the Form to <strong>Post Data</strong></h3>
+    <hr>
+    <form (ngSubmit)="onSubmit(f.value)" #f='ngForm'>
+      <label for="username">Username</label>
+      <input type="text" class="form-control" ngModel name="username">
+      <label for="Name" class="mt-3">Name</label>
+      <input type="text" name="name" ngModel class="form-control" id="Name">
+      <label for="SpecialWord" class="mt-3">Special Word</label>
+      <input type="text" name="SpecialWord" ngModel class="form-control" id="SpecialWord">
+      <p class="my-2" *ngIf="dataPosted">Your Data is Live...</p>
+      <button class="btn btn-info my-3 float-left" >Post Data</button>
+      <button class="btn btn-danger my-3 float-right" (click) = "deletePost()" >Delete Data</button>
+
+
+    </form>
+  </div>
+  <div class="col-6 border">
+    <h3 class="my-2 text-center">ACCESS data from <strong>FireBase </strong> <span class="spinner-grow text-danger"></span></h3>
+    <hr>
+    <div class="text-center m-3">
+      <button class="btn btn-success " (click)="onfetch()" type="submit">Access DATA</button>
+      <p class="line-1 anim-typewriter" *ngIf="accessData">Fetching Data...</p>
+    </div>
+    <ul class="list-group my-2"  *ngFor="let post of loadedPost " >
+      <li class="list-group-item list-group-item-success">Username: <strong> {{post.username}} </strong></li>
+      <li class="list-group-item list-group-item-secondary">Name: <strong>{{post.name}} </strong></li>
+      <li class="list-group-item list-group-item-dark">Special Word: <strong>{{post.SpecialWord}} </strong></li>
+    </ul>
+  </div>
+</div>
+</div>
